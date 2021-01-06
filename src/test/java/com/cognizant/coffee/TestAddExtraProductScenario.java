@@ -1,7 +1,5 @@
 package com.cognizant.coffee;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,10 +13,6 @@ import com.cognizant.coffee.product.impl.ExtraMilk;
 import com.cognizant.coffee.product.impl.FoamedMilk;
 import com.cognizant.coffee.product.impl.OrangeJuice;
 import com.cognizant.coffee.product.impl.RoastCoffee;
-import com.cognizant.coffee.rule.BeverageFreeRule;
-import com.cognizant.coffee.rule.ExtraFreeRule;
-import com.cognizant.coffee.rule.NormalSetPriceRule;
-import com.cognizant.coffee.rule.PurchaseRule;
 import com.cognizant.coffee.service.PurchaseService;
 
 @DisplayName("Scenario Set 3: Test when customer add extra products")
@@ -30,12 +24,6 @@ public class TestAddExtraProductScenario extends CommonScenario
     public void setup()
     {
         purchaseService = new PurchaseService();
-
-        List<PurchaseRule> ruleList = new ArrayList<>();
-        ruleList.add(new NormalSetPriceRule());
-        ruleList.add(new BeverageFreeRule());
-        ruleList.add(new ExtraFreeRule());
-        purchaseService.setRuleList(ruleList);
     }
 
     @DisplayName("Scenario 1: Test the extra product is free when customer buy a beverage and a snack")

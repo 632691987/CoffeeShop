@@ -1,7 +1,5 @@
 package com.cognizant.coffee;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,9 +7,6 @@ import org.junit.jupiter.api.Test;
 import com.cognizant.coffee.item.Order;
 import com.cognizant.coffee.product.impl.Coffee;
 import com.cognizant.coffee.product.impl.OrangeJuice;
-import com.cognizant.coffee.rule.BeverageFreeRule;
-import com.cognizant.coffee.rule.NormalSetPriceRule;
-import com.cognizant.coffee.rule.PurchaseRule;
 import com.cognizant.coffee.service.PurchaseService;
 
 @DisplayName("Scenario Set 2: Test when customer buy the 5th product")
@@ -23,11 +18,6 @@ public class TestAddFreeBeverageScenario extends CommonScenario
     public void setup()
     {
         purchaseService = new PurchaseService();
-
-        List<PurchaseRule> ruleList = new ArrayList<>();
-        ruleList.add(new NormalSetPriceRule());
-        ruleList.add(new BeverageFreeRule());
-        purchaseService.setRuleList(ruleList);
     }
 
     @DisplayName("Scenario 1: When waiter input the free beverage, it should not count money")

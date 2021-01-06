@@ -1,7 +1,5 @@
 package com.cognizant.coffee;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,8 +8,6 @@ import com.cognizant.coffee.item.Order;
 import com.cognizant.coffee.product.impl.BaconRoll;
 import com.cognizant.coffee.product.impl.Coffee;
 import com.cognizant.coffee.product.impl.OrangeJuice;
-import com.cognizant.coffee.rule.NormalSetPriceRule;
-import com.cognizant.coffee.rule.PurchaseRule;
 import com.cognizant.coffee.service.PurchaseService;
 
 @DisplayName("Scenario Set 1: Test when customer add normal offering products")
@@ -23,10 +19,6 @@ public class TestAddNormalProductScenario extends CommonScenario
     public void setup()
     {
         purchaseService = new PurchaseService();
-
-        List<PurchaseRule> ruleList = new ArrayList<>();
-        ruleList.add(new NormalSetPriceRule());
-        purchaseService.setRuleList(ruleList);
     }
 
     @DisplayName("Scenario 1A: Test when customer add large coffee")
@@ -111,6 +103,18 @@ public class TestAddNormalProductScenario extends CommonScenario
         assertWithSpecificProductAndPrice(order, Coffee.class, Coffee.CoffeeType.LARGE.getPRICE());
         assertWithSpecificProductAndPrice(order, Coffee.class, Coffee.CoffeeType.MEDIUM.getPRICE());
         assertWithSpecificProductAndPrice(order, Coffee.class, Coffee.CoffeeType.SMALL.getPRICE());
+        order.printInvoice();
+    }
+
+    @Test
+    public void sample()
+    {
+        Order order = new Order();
+
+        purchaseService.addProduct(order, new Coffee(Coffee.CoffeeType.LARGE));
+        purchaseService.addProduct(order, new OrangeJuice(), true);
+        purchaseService.addProduct(order, new BaconRoll());
+
         order.printInvoice();
     }
 }
