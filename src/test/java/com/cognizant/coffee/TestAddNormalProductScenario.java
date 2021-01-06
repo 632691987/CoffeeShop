@@ -1,5 +1,6 @@
 package com.cognizant.coffee;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -104,5 +105,14 @@ public class TestAddNormalProductScenario extends CommonScenario
         assertWithSpecificProductAndPrice(order, Coffee.class, Coffee.CoffeeType.MEDIUM.getPRICE());
         assertWithSpecificProductAndPrice(order, Coffee.class, Coffee.CoffeeType.SMALL.getPRICE());
         order.printInvoice();
+    }
+
+    @DisplayName("Scenario 5: Test if order is set to null")
+    @Test
+    public void testOrderArgumentSetToNull()
+    {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            purchaseService.addProduct(null, new BaconRoll());
+        });
     }
 }

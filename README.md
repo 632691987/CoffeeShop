@@ -17,6 +17,7 @@
     public void sample()
     {
         Order order = new Order();
+        PurchaseService purchaseService = new PurchaseService();
 
         purchaseService.addProduct(order, new Coffee(Coffee.CoffeeType.LARGE));
         purchaseService.addProduct(order, new OrangeJuice(), true);

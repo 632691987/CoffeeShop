@@ -16,7 +16,8 @@ public class PurchaseService
 {
     private List<PurchaseRule> ruleList = new ArrayList<>();
 
-    public PurchaseService() {
+    public PurchaseService()
+    {
         ruleList.add(new NormalSetPriceRule());
         ruleList.add(new BeverageFreeRule());
         ruleList.add(new ExtraFreeRule());
@@ -28,17 +29,20 @@ public class PurchaseService
      * so it could possible that when customer buy the any cups count to be the 5th beverage and set to free
      *
      */
-    public void addProduct(Order order, Product product, boolean isFree) {
-        order = Optional.ofNullable(order).orElse(new Order());
+    public void addProduct(Order order, Product product, boolean isFree)
+    {
+        Optional.ofNullable(order).orElseThrow(() -> new IllegalArgumentException("Order Should not be null"));
 
         OrderEntry orderEntry = new OrderEntry(product);
         order.addOrderEntry(orderEntry);
-        for (PurchaseRule rule : ruleList) {
+        for (PurchaseRule rule : ruleList)
+        {
             rule.process(order, isFree);
         }
     }
 
-    public void addProduct(Order order, Product product) {
+    public void addProduct(Order order, Product product)
+    {
         addProduct(order, product, false);
     }
 
