@@ -105,16 +105,4 @@ public class TestAddNormalProductScenario extends CommonScenario
         assertWithSpecificProductAndPrice(order, Coffee.class, Coffee.CoffeeType.SMALL.getPRICE());
         order.printInvoice();
     }
-
-    @Test
-    public void sample()
-    {
-        Order order = new Order();
-
-        purchaseService.addProduct(order, new Coffee(Coffee.CoffeeType.LARGE));
-        purchaseService.addProduct(order, new OrangeJuice(), true);
-        purchaseService.addProduct(order, new BaconRoll());
-
-        order.printInvoice();
-    }
 }
